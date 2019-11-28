@@ -18,6 +18,11 @@ router.get('/', (req, res) => {
  * from FOBLoc to DestLoc
  */
 router.get("/getDIT/:from/:dest", (req, res, next) => {
+  res.writeHead(200, {
+    'Content-Type': 'text/html'
+  });
+  res.write('<h1>getDIT</h1>');
+  res.end();
       var Axios = require('axios');
       var parser = require('xml2json');
       console.log('received params')
