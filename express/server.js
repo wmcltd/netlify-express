@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
  * Call UPS transit time app and return ground days
  * from FOBLoc to DestLoc
  */
-app.get("/getDIT/:from/:dest", (req, res, next) => {
+router.get("/getDIT/:from/:dest", (req, res, next) => {
       var Axios = require('axios');
       var parser = require('xml2json');
       console.log('received params')
@@ -30,11 +30,30 @@ app.get("/getDIT/:from/:dest", (req, res, next) => {
         console.log(destData)
         var fromData = JSON.parse(fromData)
         var destData = JSON.parse(destData)
-        
+        // var fobs = [
+        //     { fromZip: '06610', fromCity: 'Bridgeport', fromState: 'CT' },
+        //     { fromZip: '29340', fromCity: 'Gaffney', fromState: 'SC' },
+        //     { fromZip: '17339', fromCity: 'Lewisberry', fromState: 'PA' },
+        //     { fromZip: '93725', fromCity: 'Fresno', fromState: 'CA' },
+        // ];
+
+
         var creds = {
           userId: 'JETLINE2009',
           password: 'X81JETW34',
           accesskey: '4C8118C688C76410',
+        };
+        var fromData = {
+            zip: fromZip,
+            city: 'Bridgeport',
+            state: 'CT',
+            pickupDate: '20191126',
+        };
+        var destData = {
+            zip: '56572',
+            city: 'Pelican Rapids',
+            state: 'MN',
+            residentialIndicator: true,
         };
 
         var request = '';
